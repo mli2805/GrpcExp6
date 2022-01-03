@@ -39,6 +39,7 @@ message PriceResponse {
 
 	double price = 12;
 	.google.protobuf.BytesValue sor_bytes = 10;
+	int32 fileLen = 11;
 }
 
 

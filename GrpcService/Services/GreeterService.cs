@@ -21,18 +21,26 @@ namespace GrpcService.Services
 
         public override Task<PriceResponse> SayPrice(PriceRequest request, ServerCallContext context)
         {
-            var bytes = new byte[] { 12, 34, 56, 78, 100, 122};
+            var bytes = File.ReadAllBytes(@"c:\temp\sor\Long Precise 3000ns.sor");
+            var fileLen = bytes.Length;
+            byte[] fullBytes = new byte[fileLen * 10];
+            for (int i = 0; i < 10; i++)
+            {
+                Array.ConstrainedCopy(bytes, 0, fullBytes, fileLen * i, fileLen);
+            }
+
             var priceResponse = new PriceResponse()
             {
-                RequestId = request.RequestId, 
-                UserId = request.UserId, 
-                IsSuccess = true, 
+                RequestId = request.RequestId,
+                UserId = request.UserId,
+                IsSuccess = true,
                 Price = 12345.6789012345,
-                SorBytes = ByteString.CopyFrom(bytes),
+                SorBytes = ByteString.CopyFrom(fullBytes),
+                FileLen = fileLen,
             };
             return Task.FromResult(priceResponse);
         }
 
-        
+
     }
 }

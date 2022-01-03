@@ -3,12 +3,22 @@ using Grpc.Net.Client;
 using GrpcService;
 
 // The port number must match the port of the gRPC server.
-// using var channel = GrpcChannel.ForAddress("https://localhost:7142");
-using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+using var channel = GrpcChannel.ForAddress("https://localhost:7142");
+// using var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greeter.GreeterClient(channel);
 
 var priceRequest = CreateRequest();
-var priceResponse = await client.SayPriceAsync(priceRequest);
+PriceResponse priceResponse;
+try
+{
+    priceResponse = await client.SayPriceAsync(priceRequest);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    return;
+}
+
 if (priceResponse == null)
 {
     Console.WriteLine("Failed to get price");
@@ -27,12 +37,12 @@ Console.WriteLine($" userId: {priceResponse.UserId}");
 Console.WriteLine($" isSuccess: {priceResponse.IsSuccess}");
 Console.WriteLine($" errorMessage: {priceResponse.ErrorMessage}");
 Console.WriteLine($" price: {priceResponse.Price}");
-Console.Write(" sorBytes: ");
+Console.Write(@" sorBytes: c:\temp\sor\grpc.sor");
 var bytes = priceResponse.SorBytes.ToByteArray();
-foreach (var b in bytes)
-{
-    Console.Write($"{b} ");
-}
+byte[] fileBytes = new byte[priceResponse.FileLen];
+Array.ConstrainedCopy(bytes, priceResponse.FileLen * 9, fileBytes, 0, priceResponse.FileLen);
+
+File.WriteAllBytes(@"c:\temp\sor\grpc9.sor", fileBytes);
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
 
@@ -52,5 +62,5 @@ PriceRequest CreateRequest()
     }
 
     return new PriceRequest()
-        { RequestId = Guid.NewGuid().ToString(), UserId = "VasyaId", Customer = customer };
+    { RequestId = Guid.NewGuid().ToString(), UserId = "VasyaId", Customer = customer };
 }
