@@ -6,8 +6,6 @@ namespace GrpcService.Services
     {
         public override Task<RegistrationReply> RegisterMe(RegistrationDto request, ServerCallContext context)
         {
-
-
             return !request.UserId.StartsWith("Va")
                 ? Task.FromResult(new RegistrationReply()
                 {

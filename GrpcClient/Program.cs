@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
 using GrpcService;
+using GrpcService2;
 
 namespace GrpcClient;
 
@@ -59,6 +60,15 @@ class Program
         await RegisterUser(secondClient, "VasyaId");
         await RegisterUser(secondClient, "SeriyId");
 
+        Console.WriteLine("\nPress any key to exit...");
+        Console.ReadKey();
+
+        using var anotherChannel = GrpcChannel.ForAddress("https://localhost:6011");
+        var anotherClient = new AnotherGreeter.AnotherGreeterClient(anotherChannel);
+
+        var response = await anotherClient.AnotherSayHelloAsync(new AnotherHelloRequest()
+            { Name = "AnotherName", UserId = Guid.NewGuid().ToString() });
+        Console.WriteLine(response.Message);
         Console.WriteLine("\nPress any key to exit...");
         Console.ReadKey();
     }
