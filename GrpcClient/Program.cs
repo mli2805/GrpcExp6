@@ -10,8 +10,8 @@ class Program
     {
 
         // The port number must match the port of the gRPC server.
-        // using var channel = GrpcChannel.ForAddress("https://localhost:7142");
-        using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+        // using var channel = GrpcChannel.ForAddress("http://localhost:6000");
+        using var channel = GrpcChannel.ForAddress("https://localhost:6001");
         var client = new Greeter.GreeterClient(channel);
 
         var priceRequest = CreateRequest();
