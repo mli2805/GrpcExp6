@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package second;
+
+service Seconder {
+	rpc RegisterMe (RegistrationDto) returns (RegistrationReply);
+}
+
+message RegistrationDto {
+	string request_id = 1;
+	string user_id = 2;
+}
+
+message RegistrationReply {
+	string user_id = 2;
+	bool is_success = 3;
+}

@@ -3,8 +3,8 @@ using Grpc.Net.Client;
 using GrpcService;
 
 // The port number must match the port of the gRPC server.
-using var channel = GrpcChannel.ForAddress("https://localhost:7142");
-// using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+// using var channel = GrpcChannel.ForAddress("https://localhost:7142");
+using var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greeter.GreeterClient(channel);
 
 var priceRequest = CreateRequest();
@@ -43,6 +43,15 @@ byte[] fileBytes = new byte[priceResponse.FileLen];
 Array.ConstrainedCopy(bytes, priceResponse.FileLen * 9, fileBytes, 0, priceResponse.FileLen);
 
 File.WriteAllBytes(@"c:\temp\sor\grpc9.sor", fileBytes);
+Console.WriteLine("\n\nPress any key to use second service...\n\n");
+Console.ReadKey();
+
+var secondClient = new Seconder.SeconderClient(channel);
+await RegisterUser(secondClient, "PetyaId");
+await RegisterUser(secondClient, "VasyaId");
+await RegisterUser(secondClient, "SeriyId");
+
+
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();
 
@@ -63,4 +72,12 @@ PriceRequest CreateRequest()
 
     return new PriceRequest()
     { RequestId = Guid.NewGuid().ToString(), UserId = "VasyaId", Customer = customer };
+}
+
+async Task RegisterUser(Seconder.SeconderClient seconderClient, string s)
+{
+    var response = await seconderClient.RegisterMeAsync(new RegistrationDto()
+        { RequestId = Guid.NewGuid().ToString(), UserId = s });
+    Console.WriteLine(response.IsSuccess ? $"{s} registered successfully!\n\n" : $"Failed to register {s}!\n\n");
+    
 }
