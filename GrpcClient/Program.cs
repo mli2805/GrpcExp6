@@ -11,14 +11,15 @@ class Program
 
         // The port number must match the port of the gRPC server.
         // using var channel = GrpcChannel.ForAddress("http://localhost:6000");
-        using var channel = GrpcChannel.ForAddress("https://localhost:6001");
-        var client = new Greeter.GreeterClient(channel);
+        using var channel1 = GrpcChannel.ForAddress("https://localhost:6001");
+        using var channel3 = GrpcChannel.ForAddress("https://localhost:6003");
+        var client1 = new Greeter.GreeterClient(channel1);
 
         var priceRequest = CreateRequest();
         PriceResponse priceResponse;
         try
         {
-            priceResponse = await client.SayPriceAsync(priceRequest);
+            priceResponse = await client1.SayPriceAsync(priceRequest);
         }
         catch (Exception e)
         {
@@ -53,7 +54,7 @@ class Program
         Console.WriteLine("\n\nPress any key to use second service...\n\n");
         Console.ReadKey();
 
-        var secondClient = new Seconder.SeconderClient(channel);
+        var secondClient = new Seconder.SeconderClient(channel3);
         await RegisterUser(secondClient, "PetyaId");
         await RegisterUser(secondClient, "VasyaId");
         await RegisterUser(secondClient, "SeriyId");
