@@ -11,8 +11,8 @@ class Program
         builder.WebHost.ConfigureKestrel(options =>
         {
             options.ListenAnyIP(6000);
-            options.ListenAnyIP(6002);
             options.ListenAnyIP(6001, listenOptions => { listenOptions.UseHttps(); });
+            options.ListenAnyIP(6002);
             options.ListenAnyIP(6003, listenOptions => { listenOptions.UseHttps(); });
         });
 
