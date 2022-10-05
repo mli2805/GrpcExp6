@@ -14,7 +14,7 @@ class Program
         builder.WebHost.ConfigureKestrel(options =>
         {
             options.ListenAnyIP(6010);
-            options.ListenAnyIP(6011, listenOptions => { listenOptions.UseHttps(); });
+            //options.ListenAnyIP(6011, listenOptions => { listenOptions.UseHttps(); });
         });
 
         // Add services to the container.
@@ -31,7 +31,7 @@ class Program
 
     private static async void Work()
     {
-        using var channel1 = GrpcChannel.ForAddress("https://localhost:6001");
+        using var channel1 = GrpcChannel.ForAddress("http://localhost:6000");
 
         while (true)
         {

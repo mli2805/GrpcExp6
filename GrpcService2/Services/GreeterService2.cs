@@ -12,6 +12,7 @@ namespace GrpcService2.Services
 
         public override Task<AnotherHelloReply> AnotherSayHello(AnotherHelloRequest request, ServerCallContext context)
         {
+            _logger.LogInformation("AnotherSayHello");
             return Task.FromResult(new AnotherHelloReply
             {
                 Message = "Hello " + request.Name + $" ({request.UserId})"

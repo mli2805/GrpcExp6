@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcClient", "GrpcClient\Gr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcService2", "GrpcService2\GrpcService2.csproj", "{45B7066D-0FC1-4ECA-8113-B1F54C27C1E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppForLinux", "ConsoleAppForLinux\ConsoleAppForLinux.csproj", "{BF147B8A-3852-45C3-A40B-594B704DE2E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseLibrary", "DatabaseLibrary\DatabaseLibrary.csproj", "{4FC4B0FD-D5FA-4E5B-BDC9-CFF4E93E73E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{45B7066D-0FC1-4ECA-8113-B1F54C27C1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B7066D-0FC1-4ECA-8113-B1F54C27C1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B7066D-0FC1-4ECA-8113-B1F54C27C1E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF147B8A-3852-45C3-A40B-594B704DE2E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF147B8A-3852-45C3-A40B-594B704DE2E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF147B8A-3852-45C3-A40B-594B704DE2E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF147B8A-3852-45C3-A40B-594B704DE2E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FC4B0FD-D5FA-4E5B-BDC9-CFF4E93E73E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC4B0FD-D5FA-4E5B-BDC9-CFF4E93E73E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC4B0FD-D5FA-4E5B-BDC9-CFF4E93E73E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC4B0FD-D5FA-4E5B-BDC9-CFF4E93E73E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
