@@ -5,7 +5,7 @@ namespace GrpcAndWebApiClient
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             var serverAddress = "localhost";
             using var channel1 = GrpcChannel.ForAddress($"http://{serverAddress}:11740");
