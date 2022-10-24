@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcAndWebApiService", "Grp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcAndWebApiClient", "GrpcAndWebApiClient\GrpcAndWebApiClient.csproj", "{B9CC4577-838F-4979-984A-4D90067CA295}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiExample", "WebApiExample\WebApiExample.csproj", "{F2F5B021-1993-4827-A356-436DDA53B812}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{B9CC4577-838F-4979-984A-4D90067CA295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9CC4577-838F-4979-984A-4D90067CA295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9CC4577-838F-4979-984A-4D90067CA295}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2F5B021-1993-4827-A356-436DDA53B812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2F5B021-1993-4827-A356-436DDA53B812}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2F5B021-1993-4827-A356-436DDA53B812}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2F5B021-1993-4827-A356-436DDA53B812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
