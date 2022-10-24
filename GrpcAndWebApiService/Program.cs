@@ -1,5 +1,6 @@
 using GrpcAndWebApiService.Services;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Serilog;
 
 namespace GrpcAndWebApiService
 {
@@ -21,9 +22,16 @@ namespace GrpcAndWebApiService
             builder.Services.AddGrpc();
             builder.Services.AddControllers();
 
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            builder.Logging.ClearProviders();
+            builder.Logging.AddSerilog(logger);
+
             var app = builder.Build();
             app.UseRouting();
-            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
