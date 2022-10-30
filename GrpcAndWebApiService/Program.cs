@@ -1,12 +1,10 @@
-using System.Diagnostics;
 using GrpcAndWebApiService.Services;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Serilog;
-using Serilog.Events;
-using Serilog.Filters;
 
 namespace GrpcAndWebApiService
 {
+   
     public class Program
     {
         public static void Main(string[] args)
@@ -25,39 +23,8 @@ namespace GrpcAndWebApiService
             builder.Services.AddGrpc();
             builder.Services.AddControllers();
 
-            // var logger = new LoggerConfiguration()
-            //     .ReadFrom.Configuration(builder.Configuration)
-            //     .Enrich.FromLogContext()
-            //     .CreateLogger();
+            var logger = LoggerConfigurationFactory.Create().CreateLogger();
 
-            // var logger = new LoggerConfiguration()
-            //     .WriteTo.Logger(c => c
-            //         .Filter.ByIncludingOnly(Matching.WithProperty("EventId", 1))
-            //         .WriteTo.File(@"..\file1-.log"))
-            //     .WriteTo.Logger(c => c
-            //         .Filter.ByIncludingOnly(Matching.WithProperty("EventId", 2))
-            //         .WriteTo.File(@"..\file2-.log"))
-            //     .CreateLogger();
-            // Log.Logger = logger;
-
-            var template = "[{Timestamp:HH:mm:ss} {CorrelationId} {Level:u3}] {Username} {Message:lj}{NewLine}{Exception}";
-            var logger = new LoggerConfiguration()
-                .WriteTo.Logger(cc => cc
-                    .Filter.ByIncludingOnly(
-                        WithProperty("EventId",1001))
-                    .WriteTo
-                    .File("../log-grpc/LogGrpc-.txt", outputTemplate: template, restrictedToMinimumLevel: LogEventLevel.Debug, 
-                        rollingInterval: RollingInterval.Day, flushToDiskInterval: TimeSpan.FromSeconds(1)))
-                .WriteTo.Logger(cc => cc
-                    .Filter.ByIncludingOnly(
-                        WithProperty("EventId", 1002))
-                    .WriteTo
-                    .File("../log-web-api/LogWebApi-.txt", outputTemplate:template, restrictedToMinimumLevel: LogEventLevel.Debug, 
-                        rollingInterval: RollingInterval.Day, flushToDiskInterval: TimeSpan.FromSeconds(1)))
-                .Enrich.FromLogContext()
-                .CreateLogger();
-
-            
             builder.Logging.ClearProviders();
             builder.Logging.AddSerilog(logger);
 
@@ -72,28 +39,8 @@ namespace GrpcAndWebApiService
                 endpoints.MapControllers();
             });
 
-           
-            app.Run();
-        }
 
-        private static Func<LogEvent, bool> WithProperty(string propertyName, object scalarValue)
-        {
-            if (propertyName == null) throw new ArgumentNullException(nameof(propertyName));           
-            ScalarValue scalar = new ScalarValue(scalarValue);
-            return e=>
-            {
-                if (e.Properties.TryGetValue(propertyName, out var propertyValue))
-                {
-                    if (propertyValue is StructureValue stValue)
-                    {
-                        var value = stValue.Properties.FirstOrDefault(cc => cc.Name == "Id");
-                        if (value == null) return false;
-                        bool result = scalar.Equals(value.Value);
-                        return result;
-                    }
-                }
-                return false;
-            };
+            app.Run();
         }
     }
 }

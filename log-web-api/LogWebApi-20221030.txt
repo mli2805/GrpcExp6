@@ -1,1 +1,31 @@
 [21:15:22  INF]  WeatherForecast Get
+[21:17:38  WRN]  Overriding address(es) 'http://localhost:5252, https://localhost:7252'. Binding to endpoints defined via IConfiguration and/or UseKestrel() instead.
+[21:17:38  INF]  Now listening on: http://[::]:11740
+[21:17:38  INF]  Now listening on: http://[::]:11738
+[21:17:38  INF]  Application started. Press Ctrl+C to shut down.
+[21:17:38  INF]  Hosting environment: Development
+[21:17:38  INF]  Content root path: C:\Users\Professional\source\repos\GrpcExp6\GrpcAndWebApiService\
+[21:46:19  INF]  WeatherForecast Get
+[21:46:24  INF]  WeatherForecast Get
+[21:50:33  INF]  WeatherForecast Get
+[21:50:37  INF]  WeatherForecast Get
+[21:53:12  INF]  WeatherForecast Get
+[21:53:26  INF]  WeatherForecast Get
+[21:54:14  INF]  WeatherForecast Get
+[21:54:17  INF]  WeatherForecast Get
+[21:56:19  DBG]  Debug message from WeatherForecast Get
+[21:56:19  INF]  WeatherForecast Get
+[22:00:14  DBG]  Debug message from WeatherForecast Get
+[22:00:14  INF]  WeatherForecast Get
+[22:00:18  DBG]  Debug message from WeatherForecast Get
+[22:00:18  INF]  WeatherForecast Get
+[22:05:52  DBG]  Debug message from WeatherForecast Get
+[22:05:52  INF]  WeatherForecast Get
+[22:16:57  DBG]  Debug message from WeatherForecast Get
+[22:16:57  INF]  WeatherForecast Get
+[22:18:30  DBG]  Debug message from WeatherForecast Get
+[22:18:30  INF]  WeatherForecast Get
+[22:41:13  DBG]  Debug message from WeatherForecast Get
+[22:41:13  INF]  WeatherForecast Get
+[22:41:27  DBG]  Debug message from WeatherForecast Get
+[22:41:27  INF]  WeatherForecast Get
