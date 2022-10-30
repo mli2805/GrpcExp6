@@ -21,7 +21,8 @@ namespace GrpcAndWebApiService.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            _logger.LogInformation("WeatherForecast Get");
+            _logger.Log(LogLevel.Debug, new EventId(1002), null, "Debug message from WeatherForecast Get");
+            _logger.Log(LogLevel.Information, new EventId(1002), null, "WeatherForecast Get");
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
